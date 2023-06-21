@@ -1,0 +1,54 @@
+﻿@model IEnumerable<MachineAssignment.Models.Products>
+
+@{
+    ViewData["Title"] = "GetAllProducts";
+}
+
+<h1>GetAllProducts</h1>
+
+<p>
+    <a class="btn btn-secondary" asp-action="AddProduct">Create New</a>
+</p>
+<table class="table" id="excelConvert">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.productName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.productName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="EditProduct" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-info" asp-action="ProductDetails" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-danger" asp-action="DeleteProduct" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
